@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-cream: #FDFBF7;
+  --color-charcoal: #2C2A27;
+  --color-charcoal-light: #5A5855;
+  --color-gold: #C5A059;
+  --color-gold-pale: #E8D9B5;
+  --color-eucalyptus: #E8F0EC;
+
+  /* Fonts */
+  --font-sans: 'Jost', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+
+  /* Letter spacing */
+  --tracking-ultra-wide: 0.3em;
+}
