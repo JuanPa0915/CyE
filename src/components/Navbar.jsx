@@ -5,13 +5,24 @@ import { Menu, X } from 'lucide-react'
 const navLinks = [
   { label: 'Servicios', href: '#servicios' },
   { label: 'Tratamientos', href: '#tratamientos' },
-  { label: 'Ubicación', href: '#ubicacion' },
+  { label: 'Reservas', href: '#reservas' },
+  { label: 'Ubicacion', href: '#ubicacion' },
   { label: 'Contacto', href: '#contacto' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const handleLogoAdminAccess = (event) => {
+    event.preventDefault()
+    setMenuOpen(false)
+    window.dispatchEvent(new CustomEvent('cye-open-admin'))
+
+    if (window.location.hash !== '#admin') {
+      window.location.hash = 'admin'
+    }
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -33,7 +44,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex flex-col leading-none group">
+          <a href="#admin" className="flex flex-col leading-none group" onClick={handleLogoAdminAccess}>
             <span className="font-serif text-2xl font-light tracking-widest text-charcoal group-hover:text-gold transition-colors duration-300">
               CyE
             </span>
@@ -54,9 +65,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://wa.me/573122176960"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#reservas"
               className="ml-4 px-6 py-2.5 border border-gold text-[10px] font-body font-light tracking-widest uppercase text-gold hover:bg-gold hover:text-cream transition-all duration-300"
             >
               Agendar
@@ -99,9 +108,7 @@ export default function Navbar() {
                 </motion.a>
               ))}
               <motion.a
-                href="https://wa.me/573122176960"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#reservas"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}

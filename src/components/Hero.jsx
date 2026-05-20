@@ -53,9 +53,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4"
         >
           <a
-            href="https://wa.me/573122176960?text=Hola%2C%20quiero%20agendar%20valoraci%C3%B3n"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#reservas"
             className="group inline-flex items-center gap-3 bg-gold text-cream px-8 py-4 text-[10px] font-body font-light tracking-widest uppercase hover:bg-charcoal transition-all duration-500"
           >
             Agendar Valoración

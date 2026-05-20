@@ -17,3 +17,99 @@
   /* Letter spacing */
   --tracking-ultra-wide: 0.3em;
 }
+
+.cye-calendar.react-calendar {
+  width: 100%;
+  border: 1px solid #E8D9B5;
+  background: #FDFBF7;
+  color: #2C2A27;
+  font-family: 'Jost', sans-serif;
+  padding: 18px;
+}
+
+.cye-calendar .react-calendar__navigation {
+  align-items: center;
+  gap: 8px;
+  height: auto;
+  margin-bottom: 18px;
+}
+
+.cye-calendar .react-calendar__navigation button {
+  min-width: 40px;
+  height: 40px;
+  color: #2C2A27;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+}
+
+.cye-calendar .react-calendar__navigation button:enabled:hover,
+.cye-calendar .react-calendar__navigation button:enabled:focus {
+  background: rgba(197, 160, 89, 0.12);
+  color: #C5A059;
+}
+
+.cye-calendar .react-calendar__month-view__weekdays {
+  border-bottom: 1px solid rgba(197, 160, 89, 0.22);
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+}
+
+.cye-calendar .react-calendar__month-view__weekdays__weekday {
+  color: #5A5855;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cye-calendar .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+.cye-calendar .react-calendar__tile {
+  min-height: 48px;
+  color: #2C2A27;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  background: transparent;
+}
+
+.cye-calendar .react-calendar__tile:enabled:hover,
+.cye-calendar .react-calendar__tile:enabled:focus {
+  background: rgba(197, 160, 89, 0.12);
+  color: #8B6B35;
+}
+
+.cye-calendar .react-calendar__tile--now {
+  background: rgba(232, 240, 236, 0.9);
+  color: #2C2A27;
+}
+
+.cye-calendar .react-calendar__tile--active,
+.cye-calendar .react-calendar__tile--active:enabled:hover,
+.cye-calendar .react-calendar__tile--active:enabled:focus {
+  background: #C5A059;
+  color: #FDFBF7;
+}
+
+.cye-calendar .react-calendar__month-view__days__day--neighboringMonth,
+.cye-calendar .react-calendar__tile:disabled {
+  color: rgba(90, 88, 85, 0.35);
+  background: transparent;
+}
+
+@media (max-width: 640px) {
+  .cye-calendar.react-calendar {
+    padding: 12px;
+  }
+
+  .cye-calendar .react-calendar__tile {
+    min-height: 42px;
+    font-size: 12px;
+  }
+}

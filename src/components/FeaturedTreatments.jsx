@@ -1,5 +1,4 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Clock, Star, ArrowRight } from 'lucide-react'
 
 const treatments = [
@@ -38,11 +37,9 @@ const treatments = [
 ]
 
 export default function FeaturedTreatments() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="tratamientos" ref={ref} className="bg-eucalyptus py-28 md:py-40">
+    <section id="tratamientos" className="bg-eucalyptus py-28 md:py-40">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="text-center mb-20 md:mb-28">
