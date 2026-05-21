@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { motion } from 'framer-motion'
@@ -438,16 +438,16 @@ export default function Booking() {
 
               <div className="space-y-5">
                 <label className="block">
-                  <span className="mb-2 flex items-center gap-2 text-[10px] font-body font-light tracking-widest uppercase text-charcoal-light">
-                    <Clock3 size={12} className="text-gold" />
+                  <span className="mb-2 flex items-center gap-2 text-[14px] font-serif italic text-gold">
+                    <Clock3 size={14} className="text-gold" />
                     Hora
                   </span>
                   <select
                     value={selectedTime}
                     onChange={(event) => setSelectedTime(event.target.value)}
-                    className="w-full border border-gold-pale bg-cream px-4 py-3 font-body text-sm font-light text-charcoal outline-none transition-colors duration-300 focus:border-gold"
+                    className="w-full border border-gold/30 bg-white px-5 py-3.5 font-serif text-[17px] font-medium text-charcoal shadow-[0_4px_10px_rgba(0,0,0,0.03)] outline-none transition-all duration-300 focus:border-gold focus:ring-1 focus:ring-gold/50 focus:shadow-[0_4px_15px_rgba(197,160,89,0.15)]"
                   >
-                    <option value="">Seleccionar hora</option>
+                    <option value="">Selecciona tu horario de preferencia...</option>
                     {slotsForSelectedDate.map((slot) => (
                       <option key={slot.value} value={slot.value} disabled={slot.disabled}>
                         {slot.stateLabel ? `${slot.label} - ${slot.stateLabel}` : slot.label}
@@ -462,8 +462,8 @@ export default function Booking() {
                 </label>
 
                 <label className="block">
-                  <span className="mb-2 flex items-center gap-2 text-[10px] font-body font-light tracking-widest uppercase text-charcoal-light">
-                    <Scissors size={12} className="text-gold" />
+                  <span className="mb-2 flex items-center gap-2 text-[14px] font-serif italic text-gold">
+                    <Scissors size={14} className="text-gold" />
                     Procedimiento
                   </span>
                   <select
@@ -471,9 +471,9 @@ export default function Booking() {
                     onChange={(event) =>
                       setBookingForm((form) => ({ ...form, procedimiento: event.target.value }))
                     }
-                    className="w-full border border-gold-pale bg-cream px-4 py-3 font-body text-sm font-light text-charcoal outline-none transition-colors duration-300 focus:border-gold"
+                    className="w-full border border-gold/30 bg-white px-5 py-3.5 font-serif text-[17px] font-medium text-charcoal shadow-[0_4px_10px_rgba(0,0,0,0.03)] outline-none transition-all duration-300 focus:border-gold focus:ring-1 focus:ring-gold/50 focus:shadow-[0_4px_15px_rgba(197,160,89,0.15)]"
                   >
-                    <option value="">Seleccionar procedimiento</option>
+                    <option value="">Elige el tratamiento deseado...</option>
                     {procedures.map((procedure) => (
                       <option key={procedure} value={procedure}>
                         {procedure}
@@ -483,30 +483,30 @@ export default function Booking() {
                 </label>
 
                 <label className="block">
-                  <span className="mb-2 flex items-center gap-2 text-[10px] font-body font-light tracking-widest uppercase text-charcoal-light">
-                    <User size={12} className="text-gold" />
+                  <span className="mb-2 flex items-center gap-2 text-[14px] font-serif italic text-gold">
+                    <User size={14} className="text-gold" />
                     Nombre
                   </span>
                   <input
                     type="text"
                     value={bookingForm.nombre}
                     onChange={(event) => setBookingForm((form) => ({ ...form, nombre: event.target.value }))}
-                    placeholder="Tu nombre"
-                    className="w-full border border-gold-pale bg-cream px-4 py-3 font-body text-sm font-light text-charcoal outline-none transition-colors duration-300 placeholder:text-charcoal-light/60 focus:border-gold"
+                    placeholder="Ingresa tu nombre completo"
+                    className="w-full border border-gold/30 bg-white px-5 py-3.5 font-serif text-[17px] font-medium text-charcoal shadow-[0_4px_10px_rgba(0,0,0,0.03)] outline-none transition-all duration-300 placeholder:font-serif placeholder:italic placeholder:text-charcoal-light/50 focus:border-gold focus:ring-1 focus:ring-gold/50 focus:shadow-[0_4px_15px_rgba(197,160,89,0.15)]"
                   />
                 </label>
 
                 <label className="block">
-                  <span className="mb-2 flex items-center gap-2 text-[10px] font-body font-light tracking-widest uppercase text-charcoal-light">
-                    <Phone size={12} className="text-gold" />
+                  <span className="mb-2 flex items-center gap-2 text-[14px] font-serif italic text-gold">
+                    <Phone size={14} className="text-gold" />
                     Telefono
                   </span>
                   <input
                     type="tel"
                     value={bookingForm.telefono}
                     onChange={(event) => setBookingForm((form) => ({ ...form, telefono: event.target.value }))}
-                    placeholder="+57 300 000 0000"
-                    className="w-full border border-gold-pale bg-cream px-4 py-3 font-body text-sm font-light text-charcoal outline-none transition-colors duration-300 placeholder:text-charcoal-light/60 focus:border-gold"
+                    placeholder="Número de contacto (+57)"
+                    className="w-full border border-gold/30 bg-white px-5 py-3.5 font-serif text-[17px] font-medium text-charcoal shadow-[0_4px_10px_rgba(0,0,0,0.03)] outline-none transition-all duration-300 placeholder:font-serif placeholder:italic placeholder:text-charcoal-light/50 focus:border-gold focus:ring-1 focus:ring-gold/50 focus:shadow-[0_4px_15px_rgba(197,160,89,0.15)]"
                   />
                 </label>
 
