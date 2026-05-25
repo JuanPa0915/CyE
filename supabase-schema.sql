@@ -53,18 +53,13 @@ with check (
 );
 
 drop policy if exists "Only admins can read reservations" on public.reservas;
-create policy "Only admins can read reservations"
+drop policy if exists "Authenticated admin can read reservations" on public.reservas;
+create policy "Authenticated admin can read reservations"
 on public.reservas
 for select
 to authenticated
-using (
-  exists (
-    select 1
-    from public.admin_users
-    where admin_users.user_id = auth.uid()
-  )
-);
+using (true);
 
--- After creating the admin user in Supabase Auth, replace the value below
--- with that user's UUID and run it once:
--- insert into public.admin_users (user_id) values ('00000000-0000-0000-0000-000000000000');
+-- The admin panel does not expose public signup, so authenticated users are treated as admins.
+-- Create only the admin account in Supabase Auth. Anonymous visitors can create reservations,
+-- but they cannot read the reservations table.

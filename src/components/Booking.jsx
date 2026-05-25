@@ -144,6 +144,24 @@ export default function Booking() {
     if (!hasSupabaseConfig) return
 
     setReservationsLoading(true)
+    setAdminStatus({ type: 'loading', message: 'Cargando reservas...' })
+
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession()
+    const activeSession = sessionData?.session
+
+    if (sessionError || !activeSession) {
+      setAdminSession(null)
+      setReservations([])
+      setAdminStatus({
+        type: 'error',
+        message: 'Inicia sesion como admin para ver las reservas.',
+      })
+      setReservationsLoading(false)
+      return
+    }
+
+    setAdminSession(activeSession)
+
     const { data, error } = await supabase
       .from('reservas')
       .select('id, fecha, hora, nombre, telefono, procedimiento, estado, created_at')
@@ -151,15 +169,16 @@ export default function Booking() {
       .order('hora', { ascending: true })
 
     if (error) {
+      setReservations([])
       setAdminStatus({
         type: 'error',
-        message: 'No se pudieron cargar las reservas. Revisa las politicas RLS de Supabase.',
+        message: `No se pudieron cargar las reservas: ${error.message}`,
       })
     } else {
       setReservations(data ?? [])
       setAdminStatus({
         type: 'success',
-        message: data?.length ? 'Reservas actualizadas.' : 'Todavia no hay reservas registradas.',
+        message: data?.length ? `${data.length} reservas cargadas.` : 'Todavia no hay reservas registradas.',
       })
     }
 
@@ -189,11 +208,9 @@ export default function Booking() {
   }, [loadReservations])
 
   useEffect(() => {
-    if (!hasSupabaseConfig) {
-      setBookedTimes([])
-      setSlotsLoading(false)
-      return
-    }
+    if (!hasSupabaseConfig) return undefined
+
+    let isActive = true
 
     const loadOccupiedSlots = async () => {
       setSlotsLoading(true)
@@ -203,6 +220,8 @@ export default function Booking() {
         .select('hora')
         .eq('fecha', selectedDateForDb)
         .neq('estado', 'cancelada')
+
+      if (!isActive) return
 
       if (!error) {
         const nextBookedTimes = (data ?? []).map((reservation) => toHourMinute(reservation.hora)).filter(Boolean)
@@ -214,6 +233,10 @@ export default function Booking() {
     }
 
     loadOccupiedSlots()
+
+    return () => {
+      isActive = false
+    }
   }, [selectedDateForDb])
 
   const handleBookingSubmit = async (event) => {
@@ -625,7 +648,7 @@ export default function Booking() {
                     </p>
                     <button
                       type="button"
-                      onClick={loadReservations}
+                      onClick={() => loadReservations()}
                       disabled={reservationsLoading}
                       className="inline-flex items-center justify-center gap-2 border border-gold/30 px-4 py-2.5 text-[10px] font-body font-light tracking-widest uppercase text-gold transition-all duration-300 hover:border-gold hover:bg-gold/10 disabled:cursor-not-allowed disabled:opacity-60"
                     >
